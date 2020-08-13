@@ -1,24 +1,29 @@
 package ru.falin.RestaurantVotingSystem.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@MappedSuperclass
+@Access(AccessType.FIELD)
 public abstract class AbstractBaseEntity {
-    public static final int START_SUQ = 1000;
 
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     protected Integer id;
 
     protected AbstractBaseEntity() {
     }
 
-    protected AbstractBaseEntity(int id) {
+    protected AbstractBaseEntity(Integer id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

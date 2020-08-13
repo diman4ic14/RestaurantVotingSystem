@@ -1,14 +1,31 @@
 package ru.falin.RestaurantVotingSystem.model;
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "dishes")
 public class Dish extends AbstractNamedEntity {
+
+    @Column(name = "price", nullable = false)
+    @Range(min = 1, max = 1000)
     private int price;
+
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Restaurant restaurant;
 
     public Dish() {
     }
 
-    public Dish(int id, String name, int price) {
+    public Dish(Integer id, String name, int price) {
         super(id, name);
         this.price = price;
+    }
+
+    public Dish(Dish dish) {
+        this(dish.getId(), dish.getName(), dish.getPrice());
     }
 
     public int getPrice() {
@@ -17,6 +34,14 @@ public class Dish extends AbstractNamedEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override

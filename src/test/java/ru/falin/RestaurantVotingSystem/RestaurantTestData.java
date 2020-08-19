@@ -1,6 +1,5 @@
 package ru.falin.RestaurantVotingSystem;
 
-import ru.falin.RestaurantVotingSystem.model.Dish;
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
 
 import java.util.List;

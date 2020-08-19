@@ -4,18 +4,8 @@ import ru.falin.RestaurantVotingSystem.model.Vote;
 
 import java.time.LocalDateTime;
 
-import static ru.falin.RestaurantVotingSystem.RestaurantTestData.RESTAURANT1;
-import static ru.falin.RestaurantVotingSystem.RestaurantTestData.RESTAURANT2;
-import static ru.falin.RestaurantVotingSystem.RestaurantTestData.RESTAURANT3;
-import static ru.falin.RestaurantVotingSystem.RestaurantTestData.RESTAURANT4;
-import static ru.falin.RestaurantVotingSystem.UserTestData.ADMIN;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER1;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER2;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER3;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER4;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER5;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER6;
-import static ru.falin.RestaurantVotingSystem.UserTestData.USER7;
+import static ru.falin.RestaurantVotingSystem.RestaurantTestData.*;
+import static ru.falin.RestaurantVotingSystem.UserTestData.*;
 
 public class VoteTestData {
 

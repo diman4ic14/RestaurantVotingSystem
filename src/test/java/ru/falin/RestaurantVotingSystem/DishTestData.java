@@ -1,6 +1,5 @@
 package ru.falin.RestaurantVotingSystem;
 
-import ru.falin.RestaurantVotingSystem.TestMatcher;
 import ru.falin.RestaurantVotingSystem.model.AbstractNamedEntity;
 import ru.falin.RestaurantVotingSystem.model.Dish;
 

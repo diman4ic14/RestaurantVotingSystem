@@ -3,7 +3,6 @@ package ru.falin.RestaurantVotingSystem.repository;
 import ru.falin.RestaurantVotingSystem.model.Vote;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public interface VoteRepository {

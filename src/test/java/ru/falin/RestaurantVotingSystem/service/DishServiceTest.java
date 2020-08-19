@@ -1,4 +1,4 @@
-package ru.falin.RestaurantVotingSystem.service.impl;
+package ru.falin.RestaurantVotingSystem.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +10,10 @@ import static ru.falin.RestaurantVotingSystem.DishTestData.*;
 import static ru.falin.RestaurantVotingSystem.RestaurantTestData.RESTAURANT1_ID;
 import static ru.falin.RestaurantVotingSystem.RestaurantTestData.RESTAURANT2_ID;
 
-public class DishServiceImplTest extends AbstractServiceTest {
+public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
-    private DishServiceImpl service;
+    private DishService service;
 
     @Test
     void create() {

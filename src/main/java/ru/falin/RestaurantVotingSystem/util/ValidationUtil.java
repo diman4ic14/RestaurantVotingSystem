@@ -1,6 +1,7 @@
 package ru.falin.RestaurantVotingSystem.util;
 
-import ru.falin.RestaurantVotingSystem.model.AbstractBaseEntity;
+import ru.falin.RestaurantVotingSystem.HasId;
+import ru.falin.RestaurantVotingSystem.util.exception.IllegalRequestDataException;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
 
 import javax.validation.*;
@@ -25,11 +26,12 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkNew(AbstractBaseEntity entity) {
-        if (!entity.isNew()) {
-            throw new IllegalArgumentException(entity + "must be new (id=null)");
+    public static void checkNew(HasId bean) {
+        if (!bean.isNew()) {
+            throw new IllegalArgumentException(bean + " must be new (id=null)");
         }
     }
+
 
     public static void checkNotFound(boolean found, String msg) {
         if (!found) {
@@ -49,6 +51,14 @@ public class ValidationUtil {
     public static <T> T checkNotFoundWithId(T object, int id) {
         checkNotFoundWithId(object != null, id);
         return object;
+    }
+
+    public static void assureIdConsistent(HasId bean, int id) {
+        if (bean.isNew()) {
+            bean.setId(id);
+        } else if (bean.getId() != id){
+            throw new IllegalRequestDataException(bean + " must be with id = " + id);
+        }
     }
 
     public static Throwable getRootCause(Throwable t) {

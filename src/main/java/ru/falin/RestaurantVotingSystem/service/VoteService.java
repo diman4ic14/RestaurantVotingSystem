@@ -1,22 +1,60 @@
 package ru.falin.RestaurantVotingSystem.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.falin.RestaurantVotingSystem.model.Vote;
+import ru.falin.RestaurantVotingSystem.repository.VoteRepository;
+import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public interface VoteService {
+import static ru.falin.RestaurantVotingSystem.util.ValidationUtil.checkNotFoundWithId;
 
-    Vote create(Vote vote, LocalTime localTime, int restaurantId, int userId);
+@Service
+//@Transactional
+public class VoteService {
 
-    void update(Vote vote, LocalTime localTime, int restaurantId, int userId);
+    private final VoteRepository repository;
 
-    void delete(int id, int userId);
+    @Autowired
+    public VoteService(VoteRepository repository) {
+        this.repository = repository;
+    }
 
-    List<Vote> getAll();
+    public Vote create(Vote vote, LocalTime localTime, int restaurantId, int userId) {
+        Assert.notNull(vote, "vote must not be null");
+        checkTime(localTime);
+        return repository.save(vote, restaurantId, userId);
+    }
 
-    List<Vote> getFilteredByDay(LocalDate date);
+    public void update(Vote vote, LocalTime localTime, int restaurantId, int userId) {
+        Assert.notNull(vote, "vote must not be null");
+        checkTime(localTime);
+        checkNotFoundWithId(repository.save(vote, restaurantId, userId), vote.getId());
+    }
 
-    Vote get(int id, int userId);
+    public void delete(int id, int userId) {
+        checkNotFoundWithId(repository.delete(id, userId), id);
+    }
+
+    public List<Vote> getAll() {
+        return repository.getAll();
+    }
+
+    public List<Vote> getFilteredByDay(LocalDate date) {
+        return repository.getFilteredByDay(date.atStartOfDay());
+    }
+
+    public Vote get(int id, int userId) {
+        return checkNotFoundWithId(repository.get(id, userId), id);
+    }
+
+    private void checkTime(LocalTime localTime) {
+        if (localTime.isAfter(LocalTime.of(10, 59))) {
+            throw new NotVotedException("Sorry, but you cannot vote after 11:00");
+        }
+    }
 }

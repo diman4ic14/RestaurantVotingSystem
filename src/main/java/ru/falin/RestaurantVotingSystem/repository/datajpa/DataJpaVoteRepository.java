@@ -8,7 +8,6 @@ import ru.falin.RestaurantVotingSystem.model.Vote;
 import ru.falin.RestaurantVotingSystem.repository.VoteRepository;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Repository

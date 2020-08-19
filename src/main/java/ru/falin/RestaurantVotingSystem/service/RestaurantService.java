@@ -1,18 +1,44 @@
 package ru.falin.RestaurantVotingSystem.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
+import ru.falin.RestaurantVotingSystem.repository.RestaurantRepository;
 
 import java.util.List;
 
-public interface RestaurantService {
+import static ru.falin.RestaurantVotingSystem.util.ValidationUtil.checkNotFoundWithId;
 
-    Restaurant create(Restaurant restaurant);
+@Service
+public class RestaurantService {
 
-    void update(Restaurant restaurant);
+    private final RestaurantRepository repository;
 
-    Restaurant get(int id);
+    @Autowired
+    public RestaurantService(RestaurantRepository repository) {
+        this.repository = repository;
+    }
 
-    void delete(int id);
+    public Restaurant create(Restaurant restaurant) {
+        Assert.notNull(restaurant, "restaurant must not be null");
+        return repository.save(restaurant);
+    }
 
-    List<Restaurant> getAll();
+    public void update(Restaurant restaurant) {
+        Assert.notNull(restaurant, "restaurant must not be null");
+        checkNotFoundWithId(repository.save(restaurant), restaurant.getId());
+    }
+
+    public Restaurant get(int id) {
+        return checkNotFoundWithId(repository.get(id), id);
+    }
+
+    public void delete(int id) {
+        checkNotFoundWithId(repository.delete(id), id);
+    }
+
+    public List<Restaurant> getAll() {
+        return repository.getAll();
+    }
 }

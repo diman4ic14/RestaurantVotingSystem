@@ -7,17 +7,18 @@ DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 1;
 
 INSERT INTO users (name, email, password)
-VALUES ('admin', 'admin@yandex.ru', 'admin'),
-       ('user1', 'user1@yandex.ru', 'user1'),
-       ('user2', 'user2@yandex.ru', 'user2'),
-       ('user3', 'user3@yandex.ru', 'user3'),
-       ('user4', 'user4@yandex.ru', 'user4'),
-       ('user5', 'user5@yandex.ru', 'user5'),
-       ('user6', 'user6@yandex.ru', 'user6'),
-       ('user7', 'user7@yandex.ru', 'user7');
+VALUES ('admin', 'admin@yandex.ru', '{noop}admin'),
+       ('user1', 'user1@yandex.ru', '{noop}user1'),
+       ('user2', 'user2@yandex.ru', '{noop}user2'),
+       ('user3', 'user3@yandex.ru', '{noop}user3'),
+       ('user4', 'user4@yandex.ru', '{noop}user4'),
+       ('user5', 'user5@yandex.ru', '{noop}user5'),
+       ('user6', 'user6@yandex.ru', '{noop}user6'),
+       ('user7', 'user7@yandex.ru', '{noop}user7');
 
 INSERT INTO user_roles (role, user_id)
 VALUES ('ADMIN', 1),
+       ('USER', 1),
        ('USER', 2),
        ('USER', 3),
        ('USER', 4),

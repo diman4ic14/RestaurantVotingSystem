@@ -1,9 +1,8 @@
-package ru.falin.RestaurantVotingSystem.service.impl;
+package ru.falin.RestaurantVotingSystem.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.falin.RestaurantVotingSystem.model.Vote;
-import ru.falin.RestaurantVotingSystem.service.VoteService;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
 import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
 

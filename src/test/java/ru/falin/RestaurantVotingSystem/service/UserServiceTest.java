@@ -1,17 +1,16 @@
-package ru.falin.RestaurantVotingSystem.service.impl;
+package ru.falin.RestaurantVotingSystem.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import ru.falin.RestaurantVotingSystem.model.Role;
 import ru.falin.RestaurantVotingSystem.model.User;
-import ru.falin.RestaurantVotingSystem.service.UserService;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.falin.RestaurantVotingSystem.UserTestData.*;
 
-public class UserServiceImplTest extends AbstractServiceTest {
+public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     private UserService service;

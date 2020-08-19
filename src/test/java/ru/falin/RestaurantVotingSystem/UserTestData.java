@@ -7,14 +7,14 @@ import java.util.Collections;
 import java.util.Date;
 
 public class UserTestData {
-    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator("registered", "votes");
+    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator("registered", "votes", "password");
 
     public static final int NOT_FOUND = 1000;
 
     public static final int ADMIN_ID = 1;
     public static final int USER1_ID = ADMIN_ID + 1;
 
-    public static final User ADMIN = new User(ADMIN_ID, "admin", "admin@yandex.ru", "admin", Role.ADMIN);
+    public static final User ADMIN = new User(ADMIN_ID, "admin", "admin@yandex.ru", "admin", Role.ADMIN, Role.USER);
     public static final User USER1 = new User(USER1_ID, "user1", "user1@yandex.ru", "user1", Role.USER);
     public static final User USER2 = new User(USER1_ID + 1, "user2", "user2@yandex.ru", "user2", Role.USER);
     public static final User USER3 = new User(USER1_ID + 2, "user3", "user3@yandex.ru", "user3", Role.USER);
@@ -30,7 +30,7 @@ public class UserTestData {
     public static User getUpdated() {
         User updated = new User(USER1);
         updated.setName("UpdatedName");
-        updated.setEmail("updatedEmail@yandex.ru");
+        updated.setEmail("updatedemail@yandex.ru");
         return updated;
     }
 }

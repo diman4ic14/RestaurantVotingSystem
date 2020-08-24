@@ -14,14 +14,10 @@ public class RestaurantUtil {
     }
 
     public static final List<Restaurant> RESTAURANTS = List.of(
-            new Restaurant(9, "Subway", List.of(new Dish(13,"Sub 6 inch", 4),
-                    new Dish(14,"Sub 12 inch", 6))),
-            new Restaurant(10, "McDonalds", List.of(new Dish(15,"BigMac", 3),
-                    new Dish(16,"French Fries", 2), new Dish(17,"Orange juice", 2))),
-            new Restaurant(11, "Burger King", List.of(new Dish(18,"Whopper", 4),
-                    new Dish(19,"Ice cream", 2))),
-            new Restaurant(12, "KFC", List.of(new Dish(20,"Basket of chicken", 6),
-                    new Dish(21,"Longer", 2)))
+            new Restaurant(9, "Subway"),
+            new Restaurant(10, "McDonalds"),
+            new Restaurant(11, "Burger King"),
+            new Restaurant(12, "KFC")
     );
 
     private static final User ADMIN = new User(1, "admin", "admin@yandex.ru", "admin", Role.ADMIN);

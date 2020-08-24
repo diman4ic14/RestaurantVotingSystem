@@ -4,14 +4,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id"),
-        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.menu m")
-})
+//@NamedQueries({
+//        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id"),
+//        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.menu m")
+//})
 @Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {
-    public static final String DELETE = "Restaurant.delete";
-    public static final String GET_ALL = "Restaurant.getAll";
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("name")
@@ -24,13 +22,12 @@ public class Restaurant extends AbstractNamedEntity {
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, String name, List<Dish> menu) {
+    public Restaurant(Integer id, String name) {
         super(id, name);
-        this.menu = menu;
     }
 
     public Restaurant(Restaurant restaurant) {
-        this(restaurant.getId(), restaurant.getName(), restaurant.getMenu());
+        this(restaurant.getId(), restaurant.getName());
     }
 
     public List<Dish> getMenu() {
@@ -54,7 +51,6 @@ public class Restaurant extends AbstractNamedEntity {
         return "Restaurant{" +
                 "id=" + id +
                 ", name='" + name +
-                ", menu=" + menu +
                 '}';
     }
 }

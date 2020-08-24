@@ -13,10 +13,15 @@ public class Dish extends AbstractNamedEntity {
     private int price;
 
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Restaurant restaurant;
 
     public Dish() {
+    }
+
+    public Dish(Integer id, String name, int price, Restaurant restaurant) {
+        this(id, name, price);
+        this.restaurant = restaurant;
     }
 
     public Dish(Integer id, String name, int price) {
@@ -25,7 +30,7 @@ public class Dish extends AbstractNamedEntity {
     }
 
     public Dish(Dish dish) {
-        this(dish.getId(), dish.getName(), dish.getPrice());
+        this(dish.getId(), dish.getName(), dish.getPrice(), dish.restaurant);
     }
 
     public int getPrice() {
@@ -50,6 +55,7 @@ public class Dish extends AbstractNamedEntity {
                 "id=" + id +
                 ", name=" + name +
                 ", price=" + price +
+                ", restaurant=" + restaurant +
                 '}';
     }
 }

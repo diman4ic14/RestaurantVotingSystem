@@ -63,6 +63,6 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     @Test
     void createDuplicateName() {
         assertThrows(DataAccessException.class, () ->
-                service.create(new Restaurant(null, "Subway", null)));
+                service.create(new Restaurant(null, "Subway")));
     }
 }

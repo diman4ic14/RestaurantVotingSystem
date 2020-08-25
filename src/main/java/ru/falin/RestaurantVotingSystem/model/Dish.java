@@ -13,7 +13,7 @@ public class Dish extends AbstractNamedEntity {
     private int price;
 
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
     public Dish() {

@@ -79,4 +79,10 @@ public class UserService implements UserDetailsService {
     private User prepareAndSave(User user) {
         return repository.save(prepareToSave(user, passwordEncoder));
     }
+
+    public void enable(int id, boolean enable) {
+        User user = repository.get(id);
+        user.setEnabled(enable);
+        repository.save(user);
+    }
 }

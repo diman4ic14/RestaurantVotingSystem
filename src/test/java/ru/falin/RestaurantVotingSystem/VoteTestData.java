@@ -3,6 +3,7 @@ package ru.falin.RestaurantVotingSystem;
 import ru.falin.RestaurantVotingSystem.model.Vote;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static ru.falin.RestaurantVotingSystem.RestaurantTestData.*;
 import static ru.falin.RestaurantVotingSystem.UserTestData.*;
@@ -26,6 +27,8 @@ public class VoteTestData {
             VOTE8 = new Vote(VOTE1_ID + 7, USER1, LocalDateTime.of(2020, 8, 14, 0, 0), RESTAURANT1),
             VOTE9 = new Vote(VOTE1_ID + 8, USER2, LocalDateTime.of(2020, 8, 14, 0, 0), RESTAURANT2),
             VOTE10 = new Vote(VOTE1_ID + 9, USER3, LocalDateTime.of(2020, 8, 14, 0, 0), RESTAURANT2);
+
+    public static final List<Vote> VOTES_BY_DAY = List.of(VOTE1, VOTE2, VOTE3, VOTE4, VOTE5, VOTE6, VOTE7);
 
     public static Vote getNew() {
         return new Vote(null, USER7, LocalDateTime.of(2020, 8, 14, 0, 0), RESTAURANT1);

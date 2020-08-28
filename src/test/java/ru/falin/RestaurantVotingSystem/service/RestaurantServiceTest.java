@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
+import ru.falin.RestaurantVotingSystem.util.RestaurantUtil;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
 
-import java.util.List;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.falin.RestaurantVotingSystem.RestaurantTestData.*;
+import static ru.falin.RestaurantVotingSystem.VoteTestData.VOTES_BY_DAY;
 
 
 public class RestaurantServiceTest extends AbstractServiceTest {
@@ -47,7 +49,8 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Test
     void getAll() {
-        RESTAURANT_MATCHER.assertMatch(service.getAll(), List.of(RESTAURANT3, RESTAURANT4, RESTAURANT2, RESTAURANT1));
+        RESTAURANT_TO_MATCHER.assertMatch(service.getAllByDay(LocalDate.of(2020, 8, 13)),
+                RestaurantUtil.getFilteredTo(VOTES_BY_DAY));
     }
 
     @Test

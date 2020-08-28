@@ -25,7 +25,7 @@ public class DataJpaDishRepository implements DishRepository {
 
     @Override
     public Dish save(Dish dish, int restaurantId) {
-        if (!dish.isNew() && get(dish.getId(), restaurantId) == null) {
+        if (!dish.isNew() && get(dish.getId()) == null) {
             return null;
         }
         dish.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
@@ -37,14 +37,13 @@ public class DataJpaDishRepository implements DishRepository {
     }
 
     @Override
-    public boolean delete(int id, int restaurantId) {
-        return crudDishRepository.delete(id, restaurantId) != 0;
+    public boolean delete(int id) {
+        return crudDishRepository.delete(id) != 0;
     }
 
     @Override
-    public Dish get(int id, int restaurantId) {
+    public Dish get(int id) {
         Dish dish = crudDishRepository.findById(id)
-                .filter(d -> d.getRestaurant().getId() == restaurantId)
                 .orElse(null);
 
         if (Objects.nonNull(dish)) {
@@ -55,7 +54,7 @@ public class DataJpaDishRepository implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAll(int restaurantId) {
-        return crudDishRepository.getAll(restaurantId);
+    public List<Dish> getAll() {
+        return crudDishRepository.getAll();
     }
 }

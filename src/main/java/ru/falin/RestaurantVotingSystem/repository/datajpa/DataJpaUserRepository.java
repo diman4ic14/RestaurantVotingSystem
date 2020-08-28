@@ -10,6 +10,7 @@ import ru.falin.RestaurantVotingSystem.repository.UserRepository;
 import java.util.List;
 
 @Repository
+@Transactional
 public class DataJpaUserRepository implements UserRepository {
 
     private static final Sort SORT_NAME_EMAIL = Sort.by(Sort.Direction.ASC, "name", "email");
@@ -22,7 +23,6 @@ public class DataJpaUserRepository implements UserRepository {
     }
 
     @Override
-    @Transactional
     public User save(User user) {
         return crudRepository.save(user);
     }

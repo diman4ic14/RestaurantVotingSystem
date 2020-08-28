@@ -15,7 +15,7 @@ public class Vote extends AbstractBaseEntity {
     @Column(name = "date")
     private LocalDateTime date = LocalDate.now().atStartOfDay();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 

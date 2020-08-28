@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-//@NamedQueries({
-//        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id"),
-//        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT DISTINCT r FROM Restaurant r LEFT JOIN FETCH r.menu m")
-//})
 @Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity {
 

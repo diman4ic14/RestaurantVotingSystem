@@ -1,6 +1,7 @@
 package ru.falin.RestaurantVotingSystem;
 
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
+import ru.falin.RestaurantVotingSystem.to.RestaurantTo;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import static ru.falin.RestaurantVotingSystem.DishTestData.*;
 
 public class RestaurantTestData {
     public static final TestMatcher<Restaurant> RESTAURANT_MATCHER = TestMatcher.usingFieldsComparator("menu", "votes");
+    public static final TestMatcher<RestaurantTo> RESTAURANT_TO_MATCHER = TestMatcher.usingFieldsComparator();
 
     public static final int NOT_FOUND = 1000;
 

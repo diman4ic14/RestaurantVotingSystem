@@ -15,7 +15,7 @@ public class UserTestData {
     public static final int USER1_ID = ADMIN_ID + 1;
 
     public static final User
-            ADMIN = new User(ADMIN_ID, "admin", "admin@yandex.ru", "admin", Role.ADMIN, Role.USER),
+            ADMIN = new User(ADMIN_ID, "admin", "admin@yandex.ru", "admin", Role.ADMIN),
             USER1 = new User(USER1_ID, "user1", "user1@yandex.ru", "user1", Role.USER),
             USER2 = new User(USER1_ID + 1, "user2", "user2@yandex.ru", "user2", Role.USER),
             USER3 = new User(USER1_ID + 2, "user3", "user3@yandex.ru", "user3", Role.USER),

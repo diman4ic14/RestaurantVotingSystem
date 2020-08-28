@@ -1,7 +1,10 @@
 package ru.falin.RestaurantVotingSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.util.CollectionUtils;
+import ru.falin.RestaurantVotingSystem.HasIdAndEmail;
+import ru.falin.RestaurantVotingSystem.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,20 +13,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-@NamedQueries({
-        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User u LEFT JOIN FETCH u.roles")
-})
+import static org.hibernate.validator.constraints.SafeHtml.WhiteListType.NONE;
+
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_inx")})
-public class User extends AbstractNamedEntity {
-    public static final String DELETE = "User.delete";
-    public static final String GET_ALL = "User.getAll";
+public class User extends AbstractNamedEntity implements HasIdAndEmail {
 
     @Email
     @NotBlank
     @Column(name = "email", nullable = false, unique = true)
     @Size(max = 100)
+    @SafeHtml(groups = {View.Web.class}, whitelistType = NONE)
     private String email;
 
     @Column(name = "password", nullable = false)
@@ -72,6 +72,7 @@ public class User extends AbstractNamedEntity {
         this(id, name, email, password, true, new Date(), EnumSet.of(role, roles));
     }
 
+    @Override
     public String getEmail() {
         return email;
     }

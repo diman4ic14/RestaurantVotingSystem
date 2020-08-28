@@ -1,19 +1,16 @@
 package ru.falin.RestaurantVotingSystem.to;
 
-import ru.falin.RestaurantVotingSystem.model.Dish;
-
-import java.util.List;
+import java.beans.ConstructorProperties;
 
 public class RestaurantTo {
     private final int id;
     private final String name;
-    private final List<Dish> menu;
     private final int votes;
 
-    public RestaurantTo(int id, String name, List<Dish> menu, int votes) {
+    @ConstructorProperties({"id", "name", "votes"})
+    public RestaurantTo(int id, String name, int votes) {
         this.id = id;
         this.name = name;
-        this.menu = menu;
         this.votes = votes;
     }
 
@@ -25,10 +22,6 @@ public class RestaurantTo {
         return name;
     }
 
-    public List<Dish> getMenu() {
-        return menu;
-    }
-
     public int getVotes() {
         return votes;
     }
@@ -38,7 +31,6 @@ public class RestaurantTo {
         return "RestaurantTo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", menu=" + menu +
                 ", votes=" + votes +
                 '}';
     }

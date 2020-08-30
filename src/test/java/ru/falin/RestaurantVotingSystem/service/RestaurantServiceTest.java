@@ -48,8 +48,8 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     }
 
     @Test
-    void getAll() {
-        RESTAURANT_TO_MATCHER.assertMatch(service.getAllByDay(LocalDate.of(2020, 8, 13)),
+    void getAllByDay() {
+        RESTAURANT_TO_MATCHER.assertMatch(service.getAllByDay(LocalDate.now()),
                 RestaurantUtil.getFilteredTo(VOTES_BY_DAY));
     }
 
@@ -67,5 +67,10 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     void createDuplicateName() {
         assertThrows(DataAccessException.class, () ->
                 service.create(new Restaurant(null, "Subway")));
+    }
+
+    @Test
+    void getAll() {
+        RESTAURANT_MATCHER.assertMatch(service.getAll(), RESTAURANTS);
     }
 }

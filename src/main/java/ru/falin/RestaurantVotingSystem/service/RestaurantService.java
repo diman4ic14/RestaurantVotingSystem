@@ -54,8 +54,7 @@ public class RestaurantService {
         return RestaurantUtil.getFilteredTo(votes);
     }
 
-    public List<RestaurantTo> getAll() {
-        List<Vote> all = voteRepository.getAll();
-        return RestaurantUtil.getFilteredTo(all);
+    public List<Restaurant> getAll() {
+        return restaurantRepository.getAll();
     }
 }

@@ -41,6 +41,9 @@
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="true"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
 <!--                <entry key="#{T(org.hibernate.cfg.AvailableSettings).ENABLE_LAZY_LOAD_NO_TRANS}" value="true"/>-->
+
+                <entry key="javax.persistence.validation.group.pre-persist" value="ru.falin.RestaurantVotingSystem.View$Persist"/>
+                <entry key="javax.persistence.validation.group.pre-update" value="ru.falin.RestaurantVotingSystem.View$Persist"/>
             </map>
         </property>
 

@@ -11,7 +11,7 @@ import static ru.falin.RestaurantVotingSystem.RestaurantTestData.*;
 
 public class DishTestData {
 
-    public static final TestMatcher<Dish> DISH_TEST_MATCHER = TestMatcher.usingFieldsComparator();
+    public static final TestMatcher<Dish> DISH_TEST_MATCHER = TestMatcher.usingEqualsAssertions(Dish.class);
 
     public static final int NOT_FOUND = 1000;
 
@@ -28,7 +28,7 @@ public class DishTestData {
                         DISH8 = new Dish(DISH1_ID + 7,"Basket of chicken", 6, RESTAURANT4),
                         DISH9 = new Dish(DISH1_ID + 8,"Longer", 2, RESTAURANT4);
 
-    public static List<Dish> RESTAURANTS = List.of(DISH1, DISH2, DISH3, DISH4, DISH5, DISH6, DISH7, DISH8, DISH9).stream()
+    public static List<Dish> DISHES = List.of(DISH1, DISH2, DISH3, DISH4, DISH5, DISH6, DISH7, DISH8, DISH9).stream()
             .sorted(Comparator.comparing((AbstractNamedEntity::getName)))
             .collect(Collectors.toList());
 

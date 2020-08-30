@@ -55,7 +55,7 @@ public abstract class AbstractUserController {
 
     public User create(UserTo userTo) {
         log.info("create from To {}", userTo);
-        return UserUtil.createNewFromTo(userTo);
+        return service.create(UserUtil.createNewFromTo(userTo));
     }
 
     public User getByEmail(String email) {

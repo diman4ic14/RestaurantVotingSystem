@@ -44,15 +44,12 @@ VALUES ('Sub 6 inch', 4, 9),
        ('Longer', 2, 12);
 
 INSERT INTO votes (user_id, date, restaurant_id)
-VALUES (1, '2020-08-13 00:00:00', 9),
-       (2, '2020-08-13 00:00:00', 12),
-       (3, '2020-08-13 00:00:00', 10),
-       (4, '2020-08-13 00:00:00', 11),
-       (5, '2020-08-13 00:00:00', 12),
-       (6, '2020-08-13 00:00:00', 10),
-       (7, '2020-08-13 00:00:00', 9),
-       (2, '2020-08-14 00:00:00', 9),
-       (3, '2020-08-14 00:00:00', 10),
-       (4, '2020-08-14 00:00:00', 10);
+VALUES (2, cast(current_date AS timestamp(0)), 10),
+       (3, cast(current_date AS timestamp(0)), 10),
+       (4, cast(current_date AS timestamp(0)), 11),
+       (5, cast(current_date AS timestamp(0)), 12),
+       (6, cast(current_date AS timestamp(0)), 10),
+       (7, cast(current_date AS timestamp(0)), 9),
+       (8, cast(current_date AS timestamp(0)), 9);
 
 

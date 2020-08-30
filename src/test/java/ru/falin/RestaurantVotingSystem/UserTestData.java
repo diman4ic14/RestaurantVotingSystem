@@ -2,12 +2,15 @@ package ru.falin.RestaurantVotingSystem;
 
 import ru.falin.RestaurantVotingSystem.model.Role;
 import ru.falin.RestaurantVotingSystem.model.User;
+import ru.falin.RestaurantVotingSystem.web.json.JsonUtil;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class UserTestData {
-    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsComparator("registered", "votes", "password");
+    public static TestMatcher<User> USER_MATCHER = TestMatcher.usingFieldsWithIgnoringAssertions(
+            User.class, "registered", "meals", "password", "votes");
 
     public static final int NOT_FOUND = 1000;
 
@@ -24,6 +27,8 @@ public class UserTestData {
             USER6 = new User(USER1_ID + 5, "user6", "user6@yandex.ru", "user6", Role.USER),
             USER7 = new User(USER1_ID + 6, "user7", "user7@yandex.ru", "user7", Role.USER);
 
+    public static List<User> USERS = List.of(ADMIN, USER1, USER2, USER3, USER4, USER5, USER6, USER7);
+
     public static User getNew() {
         return new User(null, "new", "new@gmail.com", "newPass", false, new Date(), Collections.singleton(Role.USER));
     }
@@ -33,5 +38,9 @@ public class UserTestData {
         updated.setName("UpdatedName");
         updated.setEmail("updatedemail@yandex.ru");
         return updated;
+    }
+
+    public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
     }
 }

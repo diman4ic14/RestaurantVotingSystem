@@ -1,10 +1,8 @@
 package ru.falin.RestaurantVotingSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.util.CollectionUtils;
 import ru.falin.RestaurantVotingSystem.HasIdAndEmail;
-import ru.falin.RestaurantVotingSystem.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,8 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
-
-import static org.hibernate.validator.constraints.SafeHtml.WhiteListType.NONE;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_inx")})
@@ -23,7 +19,6 @@ public class User extends AbstractNamedEntity implements HasIdAndEmail {
     @NotBlank
     @Column(name = "email", nullable = false, unique = true)
     @Size(max = 100)
-    @SafeHtml(groups = {View.Web.class}, whitelistType = NONE)
     private String email;
 
     @Column(name = "password", nullable = false)

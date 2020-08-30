@@ -24,7 +24,7 @@ public abstract class AbstractRestaurantController {
         return service.getAllByDay(null);
     }
 
-    public List<RestaurantTo> getAll() {
+    public List<Restaurant> getAll() {
         log.info("getAll");
         return service.getAll();
     }

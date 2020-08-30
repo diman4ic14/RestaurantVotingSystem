@@ -48,9 +48,9 @@ public class DishService {
         return dishRepository.getAll();
     }
 
-    public void vote(LocalTime time, int restaurantId, int userId) {
+    public Integer vote(LocalTime time, int restaurantId, int userId) {
         checkTime(time);
-        voteRepository.save(new Vote(), restaurantId, userId);
+        return voteRepository.save(new Vote(), restaurantId, userId).getId();
     }
 
     private void checkTime(LocalTime localTime) {

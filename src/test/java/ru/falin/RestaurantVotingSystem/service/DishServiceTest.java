@@ -3,7 +3,11 @@ package ru.falin.RestaurantVotingSystem.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.falin.RestaurantVotingSystem.model.Dish;
+import ru.falin.RestaurantVotingSystem.repository.VoteRepository;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
+import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
+
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.falin.RestaurantVotingSystem.DishTestData.*;
@@ -13,6 +17,9 @@ public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
     private DishService service;
+
+    @Autowired
+    private VoteRepository repository;
 
     @Test
     void create() {
@@ -45,7 +52,7 @@ public class DishServiceTest extends AbstractServiceTest {
     @Test
     void getAll() {
         DISH_TEST_MATCHER.assertMatch(service.getAll(),
-                RESTAURANTS);
+                DISHES);
     }
 
     @Test
@@ -58,4 +65,14 @@ public class DishServiceTest extends AbstractServiceTest {
         assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
 
+    @Test
+    void vote() {
+        Integer voteId = service.vote(LocalTime.of(10, 59), 9, 1);
+        repository.get(voteId, 1);
+    }
+
+    @Test
+    void voteAfter11am() {
+        assertThrows(NotVotedException.class, () -> service.vote(LocalTime.of(11, 0), 9, 1));
+    }
 }

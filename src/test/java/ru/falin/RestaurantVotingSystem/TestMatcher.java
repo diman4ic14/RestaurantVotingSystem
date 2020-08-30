@@ -2,7 +2,6 @@ package ru.falin.RestaurantVotingSystem;
 
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiConsumer;
 

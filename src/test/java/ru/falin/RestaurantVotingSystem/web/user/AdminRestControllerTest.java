@@ -17,13 +17,13 @@ import ru.falin.RestaurantVotingSystem.web.json.JsonUtil;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.falin.RestaurantVotingSystem.TestUtil.readFromJson;
 import static ru.falin.RestaurantVotingSystem.TestUtil.userHttpBasic;
 import static ru.falin.RestaurantVotingSystem.UserTestData.*;
 import static ru.falin.RestaurantVotingSystem.util.exception.ErrorType.VALIDATION_ERROR;
 import static ru.falin.RestaurantVotingSystem.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
-//import static ru.falin.RestaurantVotingSystem.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
 
 
 class AdminRestControllerTest extends AbstractControllerTest {

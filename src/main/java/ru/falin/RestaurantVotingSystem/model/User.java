@@ -2,7 +2,6 @@ package ru.falin.RestaurantVotingSystem.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.util.CollectionUtils;
-import ru.falin.RestaurantVotingSystem.HasIdAndEmail;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,7 +12,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_inx")})
-public class User extends AbstractNamedEntity implements HasIdAndEmail {
+public class User extends AbstractNamedEntity {
 
     @Email
     @NotBlank
@@ -67,7 +66,6 @@ public class User extends AbstractNamedEntity implements HasIdAndEmail {
         this(id, name, email, password, true, new Date(), EnumSet.of(role, roles));
     }
 
-    @Override
     public String getEmail() {
         return email;
     }

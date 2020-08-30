@@ -1,6 +1,5 @@
 package ru.falin.RestaurantVotingSystem.web.dish;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,12 @@ import ru.falin.RestaurantVotingSystem.model.Dish;
 import ru.falin.RestaurantVotingSystem.service.DishService;
 import ru.falin.RestaurantVotingSystem.util.exception.ErrorType;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
-import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
 import ru.falin.RestaurantVotingSystem.web.AbstractControllerTest;
 import ru.falin.RestaurantVotingSystem.web.json.JsonUtil;
 
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

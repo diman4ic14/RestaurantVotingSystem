@@ -1,7 +1,6 @@
 package ru.falin.RestaurantVotingSystem.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -14,7 +13,6 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import ru.falin.RestaurantVotingSystem.util.exception.ErrorType;
 
 import javax.annotation.PostConstruct;
-import java.util.Locale;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

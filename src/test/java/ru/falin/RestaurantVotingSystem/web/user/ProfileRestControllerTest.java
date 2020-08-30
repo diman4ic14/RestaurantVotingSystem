@@ -12,9 +12,6 @@ import ru.falin.RestaurantVotingSystem.util.UserUtil;
 import ru.falin.RestaurantVotingSystem.web.AbstractControllerTest;
 import ru.falin.RestaurantVotingSystem.web.json.JsonUtil;
 
-import java.io.UnsupportedEncodingException;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

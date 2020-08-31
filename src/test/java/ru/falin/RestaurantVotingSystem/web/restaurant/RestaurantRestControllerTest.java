@@ -1,5 +1,6 @@
 package ru.falin.RestaurantVotingSystem.web.restaurant;
 
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,6 +15,8 @@ import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
 import ru.falin.RestaurantVotingSystem.web.AbstractControllerTest;
 import ru.falin.RestaurantVotingSystem.web.json.JsonUtil;
 
+import java.time.LocalTime;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -24,6 +27,7 @@ import static ru.falin.RestaurantVotingSystem.TestUtil.userHttpBasic;
 import static ru.falin.RestaurantVotingSystem.UserTestData.ADMIN;
 import static ru.falin.RestaurantVotingSystem.UserTestData.USER1;
 import static ru.falin.RestaurantVotingSystem.VoteTestData.VOTES_BY_DAY;
+import static ru.falin.RestaurantVotingSystem.util.exception.ErrorType.NOT_ACCEPTABLE_VOTE;
 import static ru.falin.RestaurantVotingSystem.util.exception.ErrorType.VALIDATION_ERROR;
 import static ru.falin.RestaurantVotingSystem.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_NAME;
 
@@ -112,6 +116,27 @@ class RestaurantRestControllerTest extends AbstractControllerTest {
         newRestaurant.setId(id);
         RESTAURANT_MATCHER.assertMatch(created, newRestaurant);
         RESTAURANT_MATCHER.assertMatch(service.get(id), newRestaurant);
+    }
+
+    @Test
+    void voteAfter11am() throws Exception {
+        Assumptions.assumeTrue(LocalTime.now().isAfter(LocalTime.of(10, 59)));
+        perform(MockMvcRequestBuilders.post(REST_URL + "vote")
+                .with(userHttpBasic(ADMIN))
+                .param("id", String.valueOf(RESTAURANT1_ID)))
+                .andDo(print())
+                .andExpect(status().isNotAcceptable())
+                .andExpect(errorType(NOT_ACCEPTABLE_VOTE))
+                .andExpect(detailMessage("Sorry, but you cannot vote after 11:00"));
+    }
+
+    @Test
+    void voteBefore11am() throws Exception {
+        Assumptions.assumeTrue(LocalTime.now().isBefore(LocalTime.of(11, 0)), "Voting is allowed before 11 am");
+        perform(MockMvcRequestBuilders.post(REST_URL + "vote")
+                .with(userHttpBasic(ADMIN))
+                .param("id", String.valueOf(RESTAURANT1_ID)))
+                .andExpect(status().isOk());
     }
 
     @Test

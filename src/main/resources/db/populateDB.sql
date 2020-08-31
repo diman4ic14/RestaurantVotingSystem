@@ -32,16 +32,16 @@ VALUES ('Subway'),
        ('Burger King'),
        ('KFC');
 
-INSERT INTO dishes (name, price, restaurant_id)
-VALUES ('Sub 6 inch', 4, 9),
-       ('Sub 12 inch', 6, 9),
-       ('BigMac', 3, 10),
-       ('French Fries', 2, 10),
-       ('Orange juice', 2, 10),
-       ('Whopper', 4, 11),
-       ('Ice cream', 2, 11),
-       ('Basket of chicken', 6, 12),
-       ('Longer', 2, 12);
+INSERT INTO dishes (name, date, price, restaurant_id)
+VALUES ('Sub 6 inch', cast(current_date AS timestamp(0)), 4, 9),
+       ('Sub 12 inch', cast(current_date AS timestamp(0)), 6, 9),
+       ('BigMac', cast(current_date AS timestamp(0)), 3, 10),
+       ('French Fries', cast(current_date AS timestamp(0)), 2, 10),
+       ('Orange juice', cast(current_date AS timestamp(0)), 2, 10),
+       ('Whopper', cast(current_date AS timestamp(0)), 4, 11),
+       ('Ice cream', cast(current_date AS timestamp(0)), 2, 11),
+       ('Basket of chicken', cast(current_date AS timestamp(0)), 6, 12),
+       ('Longer', cast(current_date AS timestamp(0)), 2, 12);
 
 INSERT INTO votes (user_id, date, restaurant_id)
 VALUES (2, cast(current_date AS timestamp(0)), 10),

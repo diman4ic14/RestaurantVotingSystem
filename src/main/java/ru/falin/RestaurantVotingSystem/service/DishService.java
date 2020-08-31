@@ -9,6 +9,7 @@ import ru.falin.RestaurantVotingSystem.repository.DishRepository;
 import ru.falin.RestaurantVotingSystem.repository.VoteRepository;
 import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -18,12 +19,10 @@ import static ru.falin.RestaurantVotingSystem.util.ValidationUtil.checkNotFoundW
 public class DishService {
 
     private final DishRepository dishRepository;
-    private final VoteRepository voteRepository;
 
     @Autowired
-    public DishService(DishRepository dishRepository, VoteRepository voteRepository) {
+    public DishService(DishRepository dishRepository) {
         this.dishRepository = dishRepository;
-        this.voteRepository = voteRepository;
     }
 
     public Dish create(Dish dish, int restaurantId) {
@@ -45,17 +44,6 @@ public class DishService {
     }
 
     public List<Dish> getAll() {
-        return dishRepository.getAll();
-    }
-
-    public Integer vote(LocalTime time, int restaurantId, int userId) {
-        checkTime(time);
-        return voteRepository.save(new Vote(), restaurantId, userId).getId();
-    }
-
-    private void checkTime(LocalTime localTime) {
-        if (localTime.isAfter(LocalTime.of(10, 59))) {
-            throw new NotVotedException("Sorry, but you cannot vote after 11:00");
-        }
+        return dishRepository.getAll(LocalDate.now().atStartOfDay());
     }
 }

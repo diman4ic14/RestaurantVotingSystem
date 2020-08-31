@@ -66,4 +66,11 @@ public class RestaurantRestController extends AbstractRestaurantController {
     public List<Restaurant> getAll() {
         return super.getAll();
     }
+
+
+    @Override
+    @PostMapping("/vote")
+    public void vote(@RequestParam int id) {
+        super.vote(id);
+    }
 }

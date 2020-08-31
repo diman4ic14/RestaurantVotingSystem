@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
 import ru.falin.RestaurantVotingSystem.service.RestaurantService;
 import ru.falin.RestaurantVotingSystem.to.RestaurantTo;
+import ru.falin.RestaurantVotingSystem.web.SecurityUtil;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
@@ -49,5 +51,12 @@ public abstract class AbstractRestaurantController {
         log.info("update {} with id {}", restaurant, id);
         assureIdConsistent(restaurant, id);
         service.update(restaurant);
+    }
+
+    public void vote(int id) {
+        int userId = SecurityUtil.authUserId();
+        LocalTime time = LocalTime.now();
+        log.info("vote for {}", id);
+        service.vote(time, id, userId);
     }
 }

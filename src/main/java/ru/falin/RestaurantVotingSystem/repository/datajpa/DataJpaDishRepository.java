@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.falin.RestaurantVotingSystem.model.Dish;
 import ru.falin.RestaurantVotingSystem.repository.DishRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -54,7 +55,7 @@ public class DataJpaDishRepository implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAll() {
-        return crudDishRepository.getAll();
+    public List<Dish> getAll(LocalDateTime dateTime) {
+        return crudDishRepository.getAll(dateTime);
     }
 }

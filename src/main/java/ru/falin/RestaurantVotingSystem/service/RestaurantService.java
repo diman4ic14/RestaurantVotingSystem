@@ -1,6 +1,7 @@
 package ru.falin.RestaurantVotingSystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
@@ -9,9 +10,11 @@ import ru.falin.RestaurantVotingSystem.repository.RestaurantRepository;
 import ru.falin.RestaurantVotingSystem.repository.VoteRepository;
 import ru.falin.RestaurantVotingSystem.to.RestaurantTo;
 import ru.falin.RestaurantVotingSystem.util.RestaurantUtil;
+import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -56,5 +59,16 @@ public class RestaurantService {
 
     public List<Restaurant> getAll() {
         return restaurantRepository.getAll();
+    }
+
+    public Integer vote(LocalTime time, int restaurantId, int userId) {
+        checkTime(time);
+        return voteRepository.save(new Vote(), restaurantId, userId).getId();
+    }
+
+    private void checkTime(LocalTime localTime) {
+        if (localTime.isAfter(LocalTime.of(10, 59))) {
+            throw new NotVotedException("Sorry, but you cannot vote after 11:00");
+        }
     }
 }

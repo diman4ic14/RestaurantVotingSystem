@@ -64,15 +64,4 @@ public class DishServiceTest extends AbstractServiceTest {
     void deleteNotFound() {
         assertThrows(NotFoundException.class, () -> service.delete(NOT_FOUND));
     }
-
-    @Test
-    void vote() {
-        Integer voteId = service.vote(LocalTime.of(10, 59), 9, 1);
-        repository.get(voteId, 1);
-    }
-
-    @Test
-    void voteAfter11am() {
-        assertThrows(NotVotedException.class, () -> service.vote(LocalTime.of(11, 0), 9, 1));
-    }
 }

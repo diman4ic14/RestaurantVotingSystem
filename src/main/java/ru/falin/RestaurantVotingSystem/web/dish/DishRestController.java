@@ -39,12 +39,6 @@ public class DishRestController extends AbstractDishController {
         super.delete(id);
     }
 
-    @Override
-    @GetMapping("/vote/{restaurantId}")
-    public void vote(@PathVariable int restaurantId) {
-        super.vote(restaurantId);
-    }
-
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ADMIN')")

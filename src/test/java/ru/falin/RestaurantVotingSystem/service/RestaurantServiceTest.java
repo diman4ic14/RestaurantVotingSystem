@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import ru.falin.RestaurantVotingSystem.model.Restaurant;
+import ru.falin.RestaurantVotingSystem.repository.VoteRepository;
 import ru.falin.RestaurantVotingSystem.util.RestaurantUtil;
 import ru.falin.RestaurantVotingSystem.util.exception.NotFoundException;
+import ru.falin.RestaurantVotingSystem.util.exception.NotVotedException;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.falin.RestaurantVotingSystem.RestaurantTestData.*;
@@ -18,6 +21,8 @@ public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
     private RestaurantService service;
+    @Autowired
+    private VoteRepository repository;
 
     @Test
     void create() {
@@ -72,5 +77,16 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     @Test
     void getAll() {
         RESTAURANT_MATCHER.assertMatch(service.getAll(), RESTAURANTS);
+    }
+
+    @Test
+    void vote() {
+        Integer voteId = service.vote(LocalTime.of(10, 59), 9, 1);
+        repository.get(voteId, 1);
+    }
+
+    @Test
+    void voteAfter11am() {
+        assertThrows(NotVotedException.class, () -> service.vote(LocalTime.of(11, 0), 9, 1));
     }
 }

@@ -46,11 +46,4 @@ public abstract class AbstractDishController {
         assureIdConsistent(dish, id);
         service.update(dish, restaurantId);
     }
-
-    public void vote(int restaurantId) {
-        int userId = SecurityUtil.authUserId();
-        LocalTime time = LocalTime.now();
-        log.info("vote for {}", restaurantId);
-        service.vote(time, restaurantId, userId);
-    }
 }

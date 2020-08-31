@@ -2,6 +2,7 @@ package ru.falin.RestaurantVotingSystem.repository;
 
 import ru.falin.RestaurantVotingSystem.model.Dish;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DishRepository {
@@ -12,5 +13,5 @@ public interface DishRepository {
 
     Dish get(int id);
 
-    List<Dish> getAll();
+    List<Dish> getAll(LocalDateTime dateTime);
 }

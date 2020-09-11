@@ -14,8 +14,6 @@ public class VoteTestData {
     public static final TestMatcher<Vote> VOTE_TEST_MATCHER = TestMatcher.usingFieldsWithIgnoringAssertions(
             Vote.class, "user", "restaurant");
 
-    public static final int NOT_FOUND = 1000;
-
     public static final int VOTE1_ID = 22;
 
     public static final Vote
@@ -31,11 +29,5 @@ public class VoteTestData {
 
     public static Vote getNew() {
         return new Vote(null, USER7, LocalDateTime.of(2020, 8, 14, 0, 0), RESTAURANT1);
-    }
-
-    public static Vote getUpdated() {
-        Vote updated = new Vote(VOTE1);
-        updated.setRestaurant(RESTAURANT2);
-        return updated;
     }
 }

@@ -44,7 +44,6 @@ public class UserService implements UserDetailsService {
 
     public void update(User user) {
         Assert.notNull(user, "user must not be null");
-//        checkNotFoundWithId(repository.save(user), user.getId());
         prepareAndSave(user);
     }
 

@@ -10,7 +10,6 @@ import ru.falin.RestaurantVotingSystem.model.Dish;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Transactional(readOnly = true)
 public interface CrudDishRepository extends JpaRepository<Dish, Integer> {
 
     @Transactional

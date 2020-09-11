@@ -10,7 +10,6 @@ import ru.falin.RestaurantVotingSystem.model.Vote;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Transactional(readOnly = true)
 public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Transactional
@@ -20,7 +19,4 @@ public interface CrudVoteRepository extends JpaRepository<Vote, Integer> {
 
     @Query("SELECT v FROM Vote v JOIN FETCH v.restaurant WHERE v.date=:date ORDER BY v.id DESC")
     List<Vote> getAllByDate(@Param("date") LocalDateTime date);
-
-//    @Query("SELECT v FROM Vote v JOIN FETCH v.user JOIN FETCH v.restaurant WHERE v.id=:id")
-//    Optional<Vote> findById(@Param("id") int id);
 }

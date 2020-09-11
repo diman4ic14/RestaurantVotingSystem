@@ -13,14 +13,4 @@ import static ru.falin.RestaurantVotingSystem.util.ValidationUtil.getRootCause;
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @ExtendWith(TimingExtension.class)
 abstract class AbstractServiceTest {
-
-    public <T extends Throwable> void validationRootCause(Runnable runnable, Class<T> rootExceptionClass) {
-        assertThrows(rootExceptionClass, () -> {
-            try {
-                runnable.run();
-            } catch (Exception e) {
-                throw getRootCause(e);
-            }
-        });
-    }
 }

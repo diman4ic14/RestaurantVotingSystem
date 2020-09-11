@@ -18,9 +18,6 @@ public class DishServiceTest extends AbstractServiceTest {
     @Autowired
     private DishService service;
 
-    @Autowired
-    private VoteRepository repository;
-
     @Test
     void create() {
         Dish created = service.create(getNew(), RESTAURANT1_ID);

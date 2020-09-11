@@ -19,13 +19,6 @@ public class ValidationUtil {
     private ValidationUtil() {
     }
 
-    public static <T> void validate(T bean) {
-        Set<ConstraintViolation<T>> violations = validator.validate(bean);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
-    }
-
     public static void checkNew(HasId bean) {
         if (!bean.isNew()) {
             throw new IllegalArgumentException(bean + " must be new (id=null)");
